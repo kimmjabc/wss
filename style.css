@@ -68,3 +68,50 @@ button {
 button:hover {
     background-color: rgb(87, 170, 127); /* 마우스 오버 시 버튼 배경 색상 변경 */
 }
+
+/* 태블릿 화면에 대한 스타일 */
+@media screen and (max-width: 768px) {
+    .header {
+        font-size: 20px; /* 태블릿에서의 헤더 글꼴 크기 */
+    }
+
+    .contents {
+        font-size: 13px;
+        color: #333;
+    }
+
+    #image-container img {
+        width: 90px; /* 태블릿에서의 이미지 크기 */
+        height: 117px;
+    }
+
+    .buttons-container button {
+        width: 150px; /* 태블릿에서의 버튼 너비 */
+        padding: 8px;
+        /* 기타 태블릿 스타일 */
+    }
+
+}
+
+/* 모바일 화면에 대한 스타일 */
+@media screen and (max-width: 480px) {
+    .header {
+        font-size: 18px; /* 모바일에서의 헤더 글꼴 크기 */
+    }
+
+    .contents {
+        font-size: 11px;
+        color: #333;
+    }
+
+    #image-container img {
+        width: 80px; /* 모바일에서의 이미지 크기 */
+        height: 104px;
+    }
+
+    .buttons-container button {
+        width: 100%; /* 모바일에서의 버튼 너비 */
+        padding: 10px 0;
+        /* 기타 모바일 스타일 */
+    }
+}

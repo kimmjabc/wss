@@ -38,7 +38,7 @@ document.getElementById('result-btn').addEventListener('click', function() {
 // 공통 키워드 찾기 함수
 function findCommonKeywords() {
     if (selectedKeywords.length > 0) {
-        return '당신의 취향 키워드는: ' + selectedKeywords.join(', ');
+        return '당신의 웹소설 독서태그는: ' + selectedKeywords.join(', ');
     } else if (document.querySelectorAll('#image-container img.selected').length > 0) {
         return '"공통 키워드가 없어요!"';
     } else {

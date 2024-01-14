@@ -7,13 +7,17 @@
     padding: 20px; /* 컨테이너 내부 여백 */
 }
 
+
+
 #image-container img {
-    width: 100px;
-    height: 130px;
+    width: 150px; /* 이미지 너비를 120px로 변경 */
+    height: 200px; /* 이미지 높이를 156px로 변경 */
     margin: 10px;
     cursor: pointer;
     transition: transform 0.3s ease;
 }
+
+
 
 #image-container img.selected {
     border: 3px solid rgb(117, 221, 167); /* 주황색 테두리 */
@@ -80,9 +84,12 @@ button:hover {
         color: #333;
     }
 
+
+
     #image-container img {
-        width: 90px; /* 태블릿에서의 이미지 크기 */
-        height: 117px;
+        width: 150px; /* 태블릿에서의 이미지 너비 조정 */
+        height: 200px
+
     }
 
     .buttons-container button {
@@ -105,8 +112,8 @@ button:hover {
     }
 
     #image-container img {
-        width: 80px; /* 모바일에서의 이미지 크기 */
-        height: 104px;
+        width: 153px; /* 모바일에서의 이미지 크기 */
+        height: auto;
     }
 
     .buttons-container button {

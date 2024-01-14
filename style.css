@@ -47,6 +47,23 @@ body {
 }
 
 
+.image-item {
+    text-align: center; /* 이미지와 텍스트를 중앙 정렬 */
+    margin: 10px; /* 여백 추가 */
+}
+
+.image-item img {
+    width: 150px; /* 이미지 너비 */
+    height: 200px; /* 이미지 높이 */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.image-item .image-title {
+    margin-top: 5px; /* 제목과 이미지 사이의 여백 */
+    font-size: 14px; /* 글꼴 크기 */
+    color: #333; /* 글꼴 색상 */
+}
 
 /* 버튼을 감싸는 div 스타일 */
 .buttons-container {
@@ -84,8 +101,6 @@ button:hover {
         color: #333;
     }
 
-
-
     #image-container img {
         width: 150px; /* 태블릿에서의 이미지 너비 조정 */
         height: 200px
@@ -93,9 +108,14 @@ button:hover {
     }
 
     .buttons-container button {
-        width: 150px; /* 태블릿에서의 버튼 너비 */
+        width: 250px; /* 태블릿에서의 버튼 너비 */
         padding: 8px;
         /* 기타 태블릿 스타일 */
+    }
+
+    .image-item img {
+        width: 100px; /* 태블릿에서의 이미지 너비 조정 */
+        height: 133px; /* 태블릿에서의 이미지 높이 조정 */
     }
 
 }
@@ -112,13 +132,19 @@ button:hover {
     }
 
     #image-container img {
-        width: 153px; /* 모바일에서의 이미지 크기 */
-        height: auto;
+        width: 100px; /* 모바일에서의 이미지 너비 조정 */
+        height: auto; /* 이미지 높이 자동 조정 */
+        margin: 3px; /* 여백 줄임 */
     }
 
     .buttons-container button {
-        width: 100%; /* 모바일에서의 버튼 너비 */
+        width: 60%; /* 모바일에서의 버튼 너비 */
         padding: 10px 0;
-        /* 기타 모바일 스타일 */
     }
+
+    .image-item img {
+        width: 80px; /* 모바일에서의 이미지 너비 조정 */
+        height: 106px; /* 모바일에서의 이미지 높이 조정 */
+    }
+
 }

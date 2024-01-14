@@ -38,17 +38,13 @@ document.getElementById('result-btn').addEventListener('click', function() {
 // 공통 키워드 찾기 함수
 function findCommonKeywords() {
     if (selectedKeywords.length > 0) {
-        return '당신의 웹소설 독서태그는: ' + selectedKeywords.join(', ');
+        return '당신의 웹툰/웹소설 독서태그는 : ' + selectedKeywords.join(', ');
     } else if (document.querySelectorAll('#image-container img.selected').length > 0) {
-        return '"공통 키워드가 없어요!"';
+        return '"판단불가! 여러 장르를 선호하시는군요!"';
     } else {
         return '"앗, 아직 작품 선택을 안했어요!"';
     }
 }
-
-// 나머지 코드 (다시 하기 버튼 이벤트 리스너 등)는 동일하게 유지
-
-
 
 // "더 하러 가기" 버튼 이벤트 리스너
 document.getElementById('more-btn').addEventListener('click', function() {
@@ -70,4 +66,18 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     selectedKeywords = [];
 });
 
+// 공통 키워드 찾기 이벤트 리스터 (수정)
+function updateCommonKeywords() {
+    const allSelectedImages = document.querySelectorAll('#image-container img.selected');
+    const allKeywords = Array.from(allSelectedImages).map(img => img.dataset.keywords.split(','));
 
+    const keywordCounts = {};
+    allKeywords.flat().forEach(keyword => {
+        const trimmedKeyword = keyword.trim();
+        keywordCounts[trimmedKeyword] = (keywordCounts[trimmedKeyword] || 0) + 1;
+    });
+
+    selectedKeywords = Object.keys(keywordCounts)
+                              .sort((a, b) => keywordCounts[b] - keywordCounts[a]) // 가장 많이 출현한 키워드 순으로 정렬
+                              .slice(0, 6); // 상위 6개 키워드만 선택
+}

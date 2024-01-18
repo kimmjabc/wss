@@ -61,7 +61,7 @@ function findCommonKeywords() {
 
 // "더 하러 가기" 버튼 이벤트 리스너
 document.getElementById('more-btn').addEventListener('click', function() {
-    window.location.href = 'https://walla.my/wss-survey';
+    window.location.href = 'https://walla.my/survey/Hu0EZvEcv7rWuWBi5lWp';
 });
 
 // 다시 하기 버튼 이벤트 리스너

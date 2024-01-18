@@ -13,19 +13,32 @@ function updateCommonKeywords() {
     const allSelectedImages = document.querySelectorAll('#image-container img.selected');
     const allKeywords = Array.from(allSelectedImages).map(img => img.dataset.keywords.split(','));
 
-    if (allKeywords.length === 0) {
-        selectedKeywords = [];
-    } else if (allKeywords.length === 1) {
-        selectedKeywords = allKeywords[0];
-    } else {
-        // 모든 선택된 이미지의 키워드 배열에서 최소 2개 이상의 이미지에 공통으로 나타나는 키워드 찾기
-        const keywordCounts = {};
-        allKeywords.flat().forEach(keyword => {
-            keywordCounts[keyword] = (keywordCounts[keyword] || 0) + 1;
-        });
-        selectedKeywords = Object.keys(keywordCounts).filter(keyword => keywordCounts[keyword] >= 2);
-    }
+    const keywordCounts = {};
+    allKeywords.flat().forEach(keyword => {
+        const trimmedKeyword = keyword.trim();
+        keywordCounts[trimmedKeyword] = (keywordCounts[trimmedKeyword] || 0) + 1;
+    });
+
+    // 우선순위가 높은 키워드
+    const highPriorityKeywords = ['로맨스판타지', '판타지', '무협'];
+
+    // 두 개 이상의 이미지에서 공통으로 나타나는 키워드만 필터링
+    let commonKeywords = Object.keys(keywordCounts).filter(keyword => keywordCounts[keyword] > 1);
+
+    // 우선순위에 따라 키워드 정렬
+    commonKeywords.sort((a, b) => {
+        let aPriority = highPriorityKeywords.includes(a) ? 0 : 1;
+        let bPriority = highPriorityKeywords.includes(b) ? 0 : 1;
+        if (aPriority === bPriority) {
+            return keywordCounts[b] - keywordCounts[a]; // 겹치는 횟수가 많은 순으로 정렬
+        }
+        return aPriority - bPriority;
+    });
+
+    // 결과를 최대 6개의 키워드로 제한
+    selectedKeywords = commonKeywords.slice(0, 6);
 }
+
 
 // 결과 보기 버튼 이벤트 리스너
 document.getElementById('result-btn').addEventListener('click', function() {
@@ -40,7 +53,7 @@ function findCommonKeywords() {
     if (selectedKeywords.length > 0) {
         return '당신의 웹툰/웹소설 독서태그는 : ' + selectedKeywords.join(', ');
     } else if (document.querySelectorAll('#image-container img.selected').length > 0) {
-        return '"판단불가! 여러 장르를 선호하시는군요!"';
+        return '"겹치는 키워드가 없습니다"';
     } else {
         return '"앗, 아직 작품 선택을 안했어요!"';
     }
@@ -65,19 +78,3 @@ document.getElementById('reset-btn').addEventListener('click', function() {
     // 선택된 키워드 초기화
     selectedKeywords = [];
 });
-
-// 공통 키워드 찾기 이벤트 리스터 (수정)
-function updateCommonKeywords() {
-    const allSelectedImages = document.querySelectorAll('#image-container img.selected');
-    const allKeywords = Array.from(allSelectedImages).map(img => img.dataset.keywords.split(','));
-
-    const keywordCounts = {};
-    allKeywords.flat().forEach(keyword => {
-        const trimmedKeyword = keyword.trim();
-        keywordCounts[trimmedKeyword] = (keywordCounts[trimmedKeyword] || 0) + 1;
-    });
-
-    selectedKeywords = Object.keys(keywordCounts)
-                              .sort((a, b) => keywordCounts[b] - keywordCounts[a]) // 가장 많이 출현한 키워드 순으로 정렬
-                              .slice(0, 6); // 상위 6개 키워드만 선택
-}

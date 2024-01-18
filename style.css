@@ -123,11 +123,11 @@ button:hover {
 /* 모바일 화면에 대한 스타일 */
 @media screen and (max-width: 480px) {
     .header {
-        font-size: 18px; /* 모바일에서의 헤더 글꼴 크기 */
+        font-size: 26px; /* 모바일에서의 헤더 글꼴 크기 */
     }
 
     .contents {
-        font-size: 11px;
+        font-size: 16px;
         color: #333;
     }
 
@@ -138,13 +138,13 @@ button:hover {
     }
 
     .buttons-container button {
-        width: 60%; /* 모바일에서의 버튼 너비 */
-        padding: 10px 0;
+        width: 100%; /* 모바일에서의 버튼 너비 */
+        padding: 20px 0;
     }
 
     .image-item img {
-        width: 80px; /* 모바일에서의 이미지 너비 조정 */
-        height: 106px; /* 모바일에서의 이미지 높이 조정 */
+        width: 100px; /* 모바일에서의 이미지 너비 조정 */
+        height: 133px; /* 모바일에서의 이미지 높이 조정 */
     }
 
 }
